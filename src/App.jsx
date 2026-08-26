@@ -1,5 +1,6 @@
 import { useTareas } from './hooks/useTarea.js';
 import Navbar from './components/Navbar';
+import { Outlet } from 'react-router';
 
 function App() {
   const {tareas} = useTareas();
@@ -8,7 +9,11 @@ function App() {
   return (
     <>
       <Navbar />
-      <h1 class="text-3xl font-bold text-indigo-600 text-center">Tareas</h1>
+      <main>
+        <h1 class="text-3xl font-bold text-indigo-600 text-center">Tareas</h1>
+      
+        <Outlet />
+      </main>
     </>
   )
 }
