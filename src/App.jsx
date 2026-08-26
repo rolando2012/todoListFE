@@ -1,4 +1,3 @@
-import './App.css';
 import { useTareas } from './hooks/useTarea.js';
 
 function App() {
@@ -7,7 +6,7 @@ function App() {
 
   return (
     <>
-      <h1>Hola Mundo</h1>
+      <h1 class="text-3xl font-bold text-indigo-600 text-center">Tareas</h1>
     </>
   )
 }
