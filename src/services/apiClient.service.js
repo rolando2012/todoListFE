@@ -1,8 +1,10 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const TOKEN = import.meta.env.VITE_AUTH_TOKEN;
 
 const DEFAULT_HEADERS = {
     'Accept' : 'application/json',
-    'Content-Type' : 'application'
+    'Content-Type' : 'application',
+    ...(TOKEN && {'Authorization': `Bearer ${TOKEN}` })
 };
 
 export async function apiRequest(endpoint, options = {}){
