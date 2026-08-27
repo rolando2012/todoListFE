@@ -1,6 +1,9 @@
-import './App.css'
+import './App.css';
+import { useTareas } from './hooks/useTarea.js';
 
 function App() {
+  const {tareas} = useTareas();
+  console.log(tareas);
 
   return (
     <>
