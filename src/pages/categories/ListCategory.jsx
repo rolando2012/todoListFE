@@ -4,7 +4,7 @@ import { useLoaderData, Await } from "react-router";
 import { Suspense } from "react";
 import { ErrorMessage } from "../../components/common/ErrorMessage";
 import Table_1 from "../../components/common/Table_1";
-import Pagination_1 from "../../components/common/Pagination_1";
+import Pagination from "../../components/common/Pagination";
 
 export default function ListCategory() {
     const { categoriesPromise } = useLoaderData();
@@ -28,7 +28,7 @@ export default function ListCategory() {
                                     name='Categoria'
                                     from={resolvedCategories.from}
                                 />
-                                <Pagination_1
+                                <Pagination
                                     currentPage={resolvedCategories.current_page}
                                     lastPage={resolvedCategories.last_page}
                                     from={resolvedCategories.from}

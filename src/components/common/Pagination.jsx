@@ -1,7 +1,7 @@
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { useSearchParams } from "react-router";
 
-export default function Pagination_1({
+export default function Pagination({
     currentPage,
     lastPage,
     from,
