@@ -1,14 +1,16 @@
-
-
-const Titles = ({level, children}) =>{
+const Titles = ({ level, children }) => {
     const styles = {
-        'h2': 'text-3xl text-indigo-600 font-bold text-center',
-        'h3': 'text-2xl text-indigo-600 font-bold text-center',
+        'h2': 'text-3xl',
+        'h3': 'text-2xl',
     };
 
     const Tag = level;
         
-    return <Tag className={styles[level]} >{children}</Tag>; 
+    return (
+        <Tag className={`${styles[level]} text-indigo-600 font-bold text-center m-3`}>
+            {children}
+        </Tag>
+    ); 
 };
 
 export default Titles;
