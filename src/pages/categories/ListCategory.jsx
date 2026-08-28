@@ -2,6 +2,7 @@ import Titles from "../../components/common/Titles"
 import Loading from "../../components/common/Loading";
 import { useLoaderData, Await } from "react-router";
 import { Suspense } from "react"; 
+import { ErrorMessage } from "../../components/common/ErrorMessage"
 
 export default function ListCategory(){
     const { categoriesPromise } = useLoaderData();
@@ -10,7 +11,8 @@ export default function ListCategory(){
         <>
             <Titles level='h2' children='Categorias' />
             <Suspense fallback={<Loading />} >
-                <Await resolve={categoriesPromise}>
+                <Await resolve={categoriesPromise}
+                        errorElement={<ErrorMessage location='Categorias' />}>
                     {(resolvedCategories) => (
                         <ul>
                             {resolvedCategories.data.map((cat)=> <li key={cat.id} >{cat.name}</li>)}
