@@ -1,13 +1,13 @@
-import './App.css';
-import { useTareas } from './hooks/useTarea.js';
+import Navbar from './components/Navbar';
+import { Outlet } from 'react-router';
 
 function App() {
-  const {tareas} = useTareas();
-  console.log(tareas);
-
   return (
     <>
-      <h1>Hola Mundo</h1>
+      <Navbar />
+      <main>      
+        <Outlet />
+      </main>
     </>
   )
 }
