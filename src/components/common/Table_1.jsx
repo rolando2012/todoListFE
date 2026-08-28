@@ -1,6 +1,6 @@
 import { LuEye, LuPencil, LuTrash2 } from "react-icons/lu";
 
-export default function Table_1({ types, name }) {
+export default function Table_1({ types, name, from }) {
     return (
         <div className="overflow-x-auto bg-white rounded-xl shadow-md my-4 mx-4 md:mx-10 border border-gray-100">
             <table className="w-full table-auto">
@@ -31,7 +31,7 @@ export default function Table_1({ types, name }) {
                             className="border-b border-gray-100 hover:bg-indigo-50/40 transition-colors"
                         >
                             <td className="sticky left-0 z-10 bg-white py-4 px-6 text-left font-medium text-gray-500">
-                                {index + 1}
+                                {from+index}
                             </td>
 
                             <td className="py-4 px-6 text-left">
