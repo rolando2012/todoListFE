@@ -10,7 +10,9 @@ export default function CreateCategory() {
       </Titles>
 
       <div className="bg-white rounded-2xl shadow-md p-8 mt-6">
-        <CreateForm submitText="Crear categoría" placeholder="Ej. Trabajo, Universidad..."/>
+        <CreateForm submitText="Crear categoría" 
+                    placeholder="Ej. Trabajo, Universidad..."
+                    onCancelRoute="/categories"/>
       </div>
 
     </section>

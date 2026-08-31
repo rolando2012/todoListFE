@@ -3,7 +3,7 @@ const TOKEN = import.meta.env.VITE_AUTH_TOKEN;
 
 const DEFAULT_HEADERS = {
     'Accept' : 'application/json',
-    'Content-Type' : 'application',
+    'Content-Type' : 'application/json',
     ...(TOKEN && {'Authorization': `Bearer ${TOKEN}` })
 };
 
@@ -21,7 +21,9 @@ export async function apiRequest(endpoint, options = {}){
     const response = await fetch(url, config);
 
     if(!response.ok){
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
+        // throw new Error(`Error ${response.status}: ${response.json()}`);
+        const errorBody = await response.json(); 
+        throw new Error(`Error: ${errorBody.message}`);
     }
 
     return response.json();

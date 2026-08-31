@@ -4,6 +4,7 @@ import IndexTask from "./pages/tasks/IndexTask";
 import ListCategory from "./pages/categories/ListCategory";
 import { categoryLoader } from "./loaders/category.loader";
 import CreateCategory from "./pages/categories/CreateCategory";
+import { createCategoryAction } from "./actions/category.action";
 
 export const router = createBrowserRouter([
     {
@@ -24,7 +25,8 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "create",
-                        Component: CreateCategory
+                        Component: CreateCategory,
+                        action: createCategoryAction
                     }
                 ]
             }

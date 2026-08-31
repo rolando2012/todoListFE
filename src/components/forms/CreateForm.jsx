@@ -1,16 +1,22 @@
-import { Form } from "react-router";
+import { Form, useActionData, useNavigation } from "react-router";
 import Button from "../common/Button";
 import LinkButton from "../common/LinkButton";
 import { BsFloppy2Fill } from "react-icons/bs";
+import { ToastError } from "../Toast/ToastError";
 
 const CreateForm = ({
   submitText,
   onCancelRoute = "/",
   placeholder="Ingrese el nombre"
 }) => {
+  const actionData = useActionData();
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
 
   return (
-    <Form className="space-y-6">
+    <>
+      {actionData?.error &&  <ToastError error={actionData.error} /> }
+      <Form method="post" className="space-y-6" noValidate>
       <div>
         <label
           htmlFor="name"
@@ -26,17 +32,22 @@ const CreateForm = ({
             name="name"
             autoFocus
             placeholder={placeholder}
+            disabled={isSubmitting}
             className="w-full outline-none"
           />
         </div>
+        {actionData?.errors?.name && (<p className="text-red-400 text-md mt-1.5" role="alert">
+              {actionData.errors.name[0]}
+            </p>)}
       </div>
-      <div className="flex flex-col-reverse sm:flex-row gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <Button
           type="primary"
           htmlType="submit"
           icon={BsFloppy2Fill}
+          disabled={isSubmitting}
         >
-          {submitText}
+          {isSubmitting? "Guardando..." : submitText}
         </Button>
         <LinkButton
           type="secondary"
@@ -46,6 +57,7 @@ const CreateForm = ({
         </LinkButton>
       </div>
     </Form>
+    </>
   );
 };
 
