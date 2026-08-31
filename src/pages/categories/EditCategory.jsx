@@ -30,8 +30,10 @@ export default function EditCategory(){
                             <CreateForm submitText="Editar categoría" 
                                         onCancelRoute="/categories"
                                         placeholder="Ej. Trabajo, Universidad..."
-                                        value={resolvedCategory?.name}
-                                        icon={FaPencilAlt} />
+                                        obj={resolvedCategory}
+                                        icon={FaPencilAlt}
+                                        method="put" 
+                                        edit={true}/>
                         </div>
 
                     </section>

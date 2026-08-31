@@ -14,7 +14,8 @@ export default function CreateCategory() {
         <CreateForm submitText="Crear categoría" 
                     placeholder="Ej. Trabajo, Universidad..."
                     onCancelRoute="/categories"
-                    icon={BsFloppy2Fill}/>
+                    icon={BsFloppy2Fill}
+                    method="post"/>
       </div>
 
     </section>

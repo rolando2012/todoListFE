@@ -7,8 +7,10 @@ const CreateForm = ({
   submitText,
   onCancelRoute = "/",
   placeholder="Ingrese el nombre",
-  value="",
-  icon=""
+  obj=null,
+  icon="",
+  method="post",
+  edit=false
 }) => {
   const actionData = useActionData();
   const navigation = useNavigation();
@@ -17,8 +19,9 @@ const CreateForm = ({
   return (
     <>
       {actionData?.error &&  <ToastError error={actionData.error} /> }
-      <Form method="post" className="space-y-6" noValidate>
+      <Form method={method} className="space-y-6" noValidate>
       <div>
+        {edit && <input type="hidden" defaultValue={obj?.id} name="id"/>}
         <label
           htmlFor="name"
           className="block text-sm font-semibold text-indigo-700 mb-2"
@@ -31,7 +34,7 @@ const CreateForm = ({
           <input
             id="name"
             name="name"
-            defaultValue={value || ""}
+            defaultValue={obj?.name || ""}
             autoFocus
             placeholder={placeholder}
             disabled={isSubmitting}
