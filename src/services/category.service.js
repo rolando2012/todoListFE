@@ -18,3 +18,11 @@ export async function create(formData){
         throw error;
     }
 }
+
+export async function getOne(id) {
+    try {
+        return await apiRequest(`${URL_TAG}/${id}`, {method: 'GET'});
+    } catch (error) {
+        throw error;
+    }
+}

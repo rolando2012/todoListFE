@@ -1,13 +1,14 @@
 import { Form, useActionData, useNavigation } from "react-router";
 import Button from "../common/Button";
 import LinkButton from "../common/LinkButton";
-import { BsFloppy2Fill } from "react-icons/bs";
 import { ToastError } from "../Toast/ToastError";
 
 const CreateForm = ({
   submitText,
   onCancelRoute = "/",
-  placeholder="Ingrese el nombre"
+  placeholder="Ingrese el nombre",
+  value="",
+  icon=""
 }) => {
   const actionData = useActionData();
   const navigation = useNavigation();
@@ -30,6 +31,7 @@ const CreateForm = ({
           <input
             id="name"
             name="name"
+            defaultValue={value || ""}
             autoFocus
             placeholder={placeholder}
             disabled={isSubmitting}
@@ -44,7 +46,7 @@ const CreateForm = ({
         <Button
           type="primary"
           htmlType="submit"
-          icon={BsFloppy2Fill}
+          icon={icon}
           disabled={isSubmitting}
         >
           {isSubmitting? "Guardando..." : submitText}
