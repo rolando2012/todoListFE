@@ -4,7 +4,7 @@ import IndexTask from "./pages/tasks/IndexTask";
 import ListCategory from "./pages/categories/ListCategory";
 import { categoryLoader, catEditLoader } from "./loaders/category.loader";
 import CreateCategory from "./pages/categories/CreateCategory";
-import { createCategoryAction, editCategoryAction } from "./actions/category.action";
+import { createCategoryAction, editCategoryAction, deleteCatAction } from "./actions/category.action";
 import EditCategory from "./pages/categories/EditCategory";
 
 export const router = createBrowserRouter([
@@ -22,7 +22,8 @@ export const router = createBrowserRouter([
                     {
                         index: true,
                         Component: ListCategory,
-                        loader: categoryLoader
+                        loader: categoryLoader,
+                        action: deleteCatAction
                     },
                     {
                         path: "create",

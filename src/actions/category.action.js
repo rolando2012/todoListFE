@@ -1,7 +1,7 @@
 import { redirect } from "react-router";
 import { categorySchema, updateCategorySchema } from "../schemas/category.schema";
-import { z } from "zod";
-import { create, edit } from "../services/category.service";
+import { success, z } from "zod";
+import { create, edit, deleteCat } from "../services/category.service";
 
 export async function createCategoryAction({request}) {
     const formData = await request.formData();
@@ -38,5 +38,16 @@ export async function editCategoryAction({request}) {
         return redirect('/categories?success=Categoria+editada+exitosamente.')
     }catch(error){
         return { error: error.message || "Ocurrió un error inesperado al conectar con el servidor." };
+    }
+}
+
+export async function deleteCatAction({request}){
+    const formData = await request.formData();
+    const id = formData.get("id");
+    try {
+        await deleteCat(id);
+        return { success: true, message: "Categoría eliminada correctamente.",};
+    } catch (error) {
+        return { success: false, message: "No se pudo eliminar la categoría.",};
     }
 }

@@ -1,5 +1,6 @@
-import { LuEye, LuPencil, LuTrash2 } from "react-icons/lu";
+import { LuEye, LuPencil } from "react-icons/lu";
 import { Link } from "react-router";
+import DeleteButton from "../forms/DeleteButton";
 
 export default function Table_1({ types, name, from }) {
     return (
@@ -63,14 +64,7 @@ export default function Table_1({ types, name, from }) {
                                     >
                                         <LuPencil size={18} strokeWidth={2} />
                                     </Link>
-                                    <button
-                                        type="button"
-                                        title={`Eliminar ${name}`}
-                                        className="p-2 rounded-lg border border-red-200 text-red-500 hover:bg-red-50 hover:text-red-600 transition-all duration-200 hover:scale-105"
-                                    >
-                                        <LuTrash2 size={18} strokeWidth={2} />
-                                    </button>
-
+                                    <DeleteButton id={cat.id} name="categoría" />
                                 </div>
                             </td>
                         </tr>

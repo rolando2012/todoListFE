@@ -29,6 +29,14 @@ export async function edit(formData, id) {
     }
 }
 
+export async function deleteCat(id) {
+    try{
+        return await apiRequest(`${URL_CATEGORY}/${id}`, {method: 'DELETE'});
+    }catch(error){
+        throw error;
+    }
+}
+
 export async function getOne(id) {
     try {
         return await apiRequest(`${URL_CATEGORY}/${id}`, {method: 'GET'});
