@@ -2,7 +2,7 @@ import { LuEye, LuPencil } from "react-icons/lu";
 import { Link } from "react-router";
 import DeleteButton from "../forms/DeleteButton";
 
-export default function Table_1({ types, name, from }) {
+export default function Table_1({ types, name, from, url }) {
     return (
         <div className="overflow-x-auto bg-white rounded-xl shadow-md my-4 mx-4 md:mx-10 border border-gray-100">
             <table className="w-full table-auto">
@@ -51,14 +51,14 @@ export default function Table_1({ types, name, from }) {
                             <td className="py-4 px-6">
                                 <div className="flex items-center justify-center gap-2">
                                     <Link
-                                        to={`/categories/show/${cat.id}`}
+                                        to={`${url}/show/${cat.id}`}
                                         title={`Ver ${name}`}
                                         className="p-2 rounded-lg border border-blue-200 text-blue-500 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 hover:scale-105"
                                     >
                                         <LuEye size={18} strokeWidth={2} />
                                     </Link>
                                     <Link
-                                        to={`/categories/edit/${cat.id}`}
+                                        to={`${url}/edit/${cat.id}`}
                                         title={`Editar ${name}`}
                                         className="p-2 rounded-lg border border-amber-200 text-amber-500 hover:bg-amber-50 hover:text-amber-600 transition-all duration-200 hover:scale-105"
                                     >

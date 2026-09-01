@@ -39,6 +39,7 @@ export default function ListCategory() {
                                     types={resolvedCategories.data}
                                     name='Categoria'
                                     from={resolvedCategories.from}
+                                    url='/categories'
                                 />
                                 <Pagination
                                     currentPage={resolvedCategories.current_page}

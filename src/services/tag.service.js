@@ -11,3 +11,7 @@ export async function create(formdata) {
                             body: JSON.stringify(formdata)
     });
 }
+
+export async function getOne(id) {
+    return await apiRequest(`${URL_TAG}/${id}`, { method: 'GET'});
+}

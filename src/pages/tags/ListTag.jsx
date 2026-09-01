@@ -39,6 +39,7 @@ export default function ShowTag(){
                                     types={resolvedTags.data}
                                     name='Etiqueta'
                                     from={resolvedTags.from}
+                                    url='/tags'
                                 />
                                 <Pagination
                                     currentPage={resolvedTags.current_page}
