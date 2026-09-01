@@ -18,7 +18,7 @@ export default function ShowTag(){
         {successMessage &&  <Toast successMessage={successMessage} />}
             <div className="flex justify-between my-4 mx-4 md:mx-20 ">
                 <Titles level="h2" children="Etiquetas" />
-                <LinkButton type="primary" icon={FaPlus} route="/categories/create">
+                <LinkButton type="primary" icon={FaPlus} route="/tags/create">
                     Nueva Etiqueta
                 </LinkButton>
             </div>
