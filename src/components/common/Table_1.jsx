@@ -64,7 +64,7 @@ export default function Table_1({ types, name, from, url }) {
                                     >
                                         <LuPencil size={18} strokeWidth={2} />
                                     </Link>
-                                    <DeleteButton id={cat.id} name="categoría" />
+                                    <DeleteButton id={cat.id} name="etiqueta" />
                                 </div>
                             </td>
                         </tr>

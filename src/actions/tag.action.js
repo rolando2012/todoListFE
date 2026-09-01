@@ -1,7 +1,7 @@
 import { redirect } from "react-router";
 import { tagSchema, updateTagSchema } from "../schemas/tag.schema";
 import { z } from "zod";
-import { create, edit } from "../services/tag.service";
+import { create, deleteTag, edit } from "../services/tag.service";
 
 export async function createTagAction({ request}) {
     const formData = await request.formData();
@@ -38,5 +38,17 @@ export async function editTagAction({ request}) {
         return redirect('/tags?success=Tag+editada+exitosamente.');
     } catch (error) {
         return { error: error.message || "currió un error inesperado al conectar con el servidor."};
+    }
+}
+
+export async function deleteTagAction({ request }) {
+    const formData = await request.formData();
+    const id = formData.get("id");
+
+    try {
+        await deleteTag(id);
+        return { success: true, message: "Etiqueta eliminada correctamente."};
+    } catch (error) {
+        return { success: false, message: "No se pudo eliminar la etiqueta.",};
     }
 }
