@@ -18,3 +18,21 @@ export async function create(formData){
         throw error;
     }
 }
+
+export async function edit(formData, id) {
+    try {
+        return await apiRequest(`${URL_CATEGORY}/${id}`, {method: 'PUT',
+                                    body: JSON.stringify(formData) 
+        });
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function getOne(id) {
+    try {
+        return await apiRequest(`${URL_CATEGORY}/${id}`, {method: 'GET'});
+    } catch (error) {
+        throw error;
+    }
+}

@@ -1,4 +1,5 @@
 import { LuEye, LuPencil, LuTrash2 } from "react-icons/lu";
+import { Link } from "react-router";
 
 export default function Table_1({ types, name, from }) {
     return (
@@ -55,13 +56,13 @@ export default function Table_1({ types, name, from }) {
                                     >
                                         <LuEye size={18} strokeWidth={2} />
                                     </button>
-                                    <button
-                                        type="button"
+                                    <Link
+                                        to={`/categories/edit/${cat.id}`}
                                         title={`Editar ${name}`}
                                         className="p-2 rounded-lg border border-amber-200 text-amber-500 hover:bg-amber-50 hover:text-amber-600 transition-all duration-200 hover:scale-105"
                                     >
                                         <LuPencil size={18} strokeWidth={2} />
-                                    </button>
+                                    </Link>
                                     <button
                                         type="button"
                                         title={`Eliminar ${name}`}

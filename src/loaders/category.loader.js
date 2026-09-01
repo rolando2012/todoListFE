@@ -1,4 +1,4 @@
-import { getAll } from '../services/category.service';
+import { getAll, getOne } from '../services/category.service';
 
 export async function categoryLoader({request}){
     const url = new URL(request.url);
@@ -7,3 +7,10 @@ export async function categoryLoader({request}){
         categoriesPromise: getAll(page)
     }
 } 
+
+export async function catEditLoader({params}){
+    const id = params.id;
+    return {
+        editCatPromise: getOne(id)
+    }
+}
