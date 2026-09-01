@@ -7,7 +7,7 @@ const Titles = ({ level, children }) => {
     const Tag = level;
         
     return (
-        <Tag className={`${styles[level]} text-indigo-600 font-bold text-center m-3`}>
+        <Tag className={`${styles[level]} text-indigo-600 font-bold`}>
             {children}
         </Tag>
     ); 

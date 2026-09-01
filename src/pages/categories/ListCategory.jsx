@@ -1,16 +1,28 @@
 import Titles from "../../components/common/Titles";
 import Loading from "../../components/common/Loading";
-import { useLoaderData, Await } from "react-router";
+import { useLoaderData, Await, useSearchParams } from "react-router";
 import { Suspense } from "react";
 import { ErrorMessage } from "../../components/common/ErrorMessage";
 import Table_1 from "../../components/common/Table_1";
 import Pagination from "../../components/common/Pagination";
+import LinkButton from "../../components/common/LinkButton";
+import { FaPlus } from "react-icons/fa";
+import { Toast } from "../../components/Toast/Toast";
 
 export default function ListCategory() {
     const { categoriesPromise } = useLoaderData();
+    const [searchParams] = useSearchParams();
+    const successMessage = searchParams.get("success");
     return (
         <>
-            <Titles level="h2" children="Categorias" />
+        {successMessage &&  <Toast successMessage={successMessage} />}
+            <div className="flex justify-between my-4 mx-4 md:mx-20 ">
+                <Titles level="h2" children="Categorias" />
+                <LinkButton type="primary" icon={FaPlus} route="/categories/create">
+                    Nueva Categoría
+                </LinkButton>
+            </div>
+            
             <Suspense fallback={<Loading />}>
                 <Await
                     resolve={categoriesPromise}
