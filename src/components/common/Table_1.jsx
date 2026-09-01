@@ -50,13 +50,13 @@ export default function Table_1({ types, name, from }) {
 
                             <td className="py-4 px-6">
                                 <div className="flex items-center justify-center gap-2">
-                                    <button
-                                        type="button"
+                                    <Link
+                                        to={`/categories/show/${cat.id}`}
                                         title={`Ver ${name}`}
                                         className="p-2 rounded-lg border border-blue-200 text-blue-500 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 hover:scale-105"
                                     >
                                         <LuEye size={18} strokeWidth={2} />
-                                    </button>
+                                    </Link>
                                     <Link
                                         to={`/categories/edit/${cat.id}`}
                                         title={`Editar ${name}`}

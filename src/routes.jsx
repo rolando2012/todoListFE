@@ -6,6 +6,7 @@ import { categoryLoader, catEditLoader } from "./loaders/category.loader";
 import CreateCategory from "./pages/categories/CreateCategory";
 import { createCategoryAction, editCategoryAction, deleteCatAction } from "./actions/category.action";
 import EditCategory from "./pages/categories/EditCategory";
+import ShowCategory from "./pages/categories/ShowCategory";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,11 @@ export const router = createBrowserRouter([
                         Component: EditCategory,
                         loader: catEditLoader,
                         action: editCategoryAction
+                    },
+                    {
+                        path: "show/:id",
+                        Component: ShowCategory,
+                        loader: catEditLoader
                     }
                 ]
             }
