@@ -10,8 +10,9 @@ import ShowCategory from "./pages/categories/ShowCategory";
 import ListTag from "./pages/tags/ListTag";
 import { oneTagLoader, tagLoader } from "./loaders/tag.loader";
 import CreateTag from "./pages/tags/CreateTag";
-import { createTagAction } from "./actions/tag.action";
+import { createTagAction, editTagAction } from "./actions/tag.action";
 import ShowTag from "./pages/tags/ShowTag";
+import EditTag from "./pages/tags/EditTag";
 
 export const router = createBrowserRouter([
     {
@@ -66,6 +67,12 @@ export const router = createBrowserRouter([
                         path: "show/:id",
                         Component: ShowTag,
                         loader: oneTagLoader
+                    },
+                    {
+                        path: "edit/:id",
+                        Component: EditTag,
+                        loader: oneTagLoader,
+                        action: editTagAction
                     }
                 ]
             }

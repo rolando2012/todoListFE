@@ -15,3 +15,9 @@ export async function create(formdata) {
 export async function getOne(id) {
     return await apiRequest(`${URL_TAG}/${id}`, { method: 'GET'});
 }
+
+export async function edit(formData, id) {
+    return await apiRequest(`${URL_TAG}/${id}`, { method: 'PUT',
+                                body: JSON.stringify(formData)
+    })
+}
