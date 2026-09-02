@@ -1,4 +1,4 @@
-import { getAll } from "../services/tarea.service";
+import { getAll, show } from "../services/tarea.service";
 import { getAll as getAllTags } from "../services/tag.service";
 import { getAll as getAllCats } from "../services/category.service";
 
@@ -18,4 +18,16 @@ export async function tastFormLoader() {
     return {
         categoriesPromise: categories, 
         tagsPromise: tags};
+}
+
+export async function oneTaskLoader({ params }){
+    const id = params.id;
+    const [task, categories, tags] = await Promise.all([
+        show(id), getAllCats(), getAllTags()
+    ])
+
+    return{ taskPromise: task,
+        categoriesPromise: categories, 
+        tagsPromise: tags
+    }
 }

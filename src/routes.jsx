@@ -13,9 +13,10 @@ import { createTagAction, deleteTagAction, editTagAction } from "./actions/tag.a
 import ShowTag from "./pages/tags/ShowTag";
 import EditTag from "./pages/tags/EditTag";
 import ListTask from "./pages/tasks/ListTask";
-import { taskLoader, tastFormLoader } from "./loaders/task.loader";
+import { oneTaskLoader, taskLoader, tastFormLoader } from "./loaders/task.loader";
 import CreateTask from "./pages/tasks/CreateTask";
 import { createTaskAction } from "./actions/task.action";
+import EditTask from "./pages/tasks/EditTask";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,11 @@ export const router = createBrowserRouter([
                         Component: CreateTask,
                         loader: tastFormLoader,
                         action: createTaskAction
+                    },
+                    {
+                        path: "edit/:id",
+                        Component: EditTask,
+                        loader: oneTaskLoader
                     }
                 ]
             },

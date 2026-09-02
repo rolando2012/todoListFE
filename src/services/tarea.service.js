@@ -11,3 +11,7 @@ export async function create(formData) {
                             body: JSON.stringify(formData)
     });
 }
+
+export async function show(id) {
+    return await apiRequest(`${URL_TASK}/${id}`, { method: 'GET'});
+}
