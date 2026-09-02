@@ -1,10 +1,13 @@
 import { apiRequest } from "./apiClient.service";
 
-export async function getAll(){
-    try{
-        return await apiRequest('/tasks', { method: 'GET' });
-    }catch(error){
-        console.error('Error en getAll: ', error.message);
-        throw error;
-    }
+const URL_TASK = "/tasks"
+
+export async function getAll(page=1){
+    return await apiRequest(`${URL_TASK}?page=${page}`, { method: 'GET' });
+}
+
+export async function create(formData) {
+    return await apiRequest(`${URL_TASK}`, { method: 'POST',
+                            body: JSON.stringify(formData)
+    });
 }

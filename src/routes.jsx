@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router";
 import App from "./App";
-import IndexTask from "./pages/tasks/IndexTask";
 import ListCategory from "./pages/categories/ListCategory";
 import { categoryLoader, catEditLoader } from "./loaders/category.loader";
 import CreateCategory from "./pages/categories/CreateCategory";
@@ -13,6 +12,10 @@ import CreateTag from "./pages/tags/CreateTag";
 import { createTagAction, deleteTagAction, editTagAction } from "./actions/tag.action";
 import ShowTag from "./pages/tags/ShowTag";
 import EditTag from "./pages/tags/EditTag";
+import ListTask from "./pages/tasks/ListTask";
+import { taskLoader, tastFormLoader } from "./loaders/task.loader";
+import CreateTask from "./pages/tasks/CreateTask";
+import { createTaskAction } from "./actions/task.action";
 
 export const router = createBrowserRouter([
     {
@@ -20,9 +23,21 @@ export const router = createBrowserRouter([
         Component: App,
         children: [
             {
-                index: true,
-                Component: IndexTask
-            }, 
+                path: "tasks",
+                children:[
+                    {
+                        index: true,
+                        Component: ListTask,
+                        loader: taskLoader
+                    },
+                    {
+                        path: "create",
+                        Component: CreateTask,
+                        loader: tastFormLoader,
+                        action: createTaskAction
+                    }
+                ]
+            },
             {
                 path: "categories",
                 children: [
