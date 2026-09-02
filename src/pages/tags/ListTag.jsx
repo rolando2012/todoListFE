@@ -9,44 +9,44 @@ import LinkButton from "../../components/common/LinkButton";
 import { FaPlus } from "react-icons/fa";
 import { Toast } from "../../components/Toast/Toast";
 
-export default function ListCategory() {
-    const { categoriesPromise } = useLoaderData();
+export default function ShowTag(){
+    const { tagsPromise } = useLoaderData();
     const [searchParams] = useSearchParams();
     const successMessage = searchParams.get("success");
     return (
         <>
         {successMessage &&  <Toast successMessage={successMessage} />}
             <div className="flex justify-between my-4 mx-4 md:mx-20 ">
-                <Titles level="h2" children="Categorias" />
-                <LinkButton type="primary" icon={FaPlus} route="/categories/create">
-                    Nueva Categoría
+                <Titles level="h2" children="Etiquetas" />
+                <LinkButton type="primary" icon={FaPlus} route="/tags/create">
+                    Nueva Etiqueta
                 </LinkButton>
             </div>
             
             <Suspense fallback={<Loading />}>
                 <Await
-                    resolve={categoriesPromise}
+                    resolve={tagsPromise}
                     errorElement={
-                        <ErrorMessage message="Error al cargar las categorias" />
+                        <ErrorMessage message="Error al cargar las etiquetas" />
                     }
                 >
-                    {(resolvedCategories) => {
-                        if(!resolvedCategories?.data || resolvedCategories.data.length === 0){
-                            return <ErrorMessage message="No hay categorias registradas" />                        }
+                    {(resolvedTags) => {
+                        if(!resolvedTags?.data || resolvedTags.data.length === 0){
+                            return <ErrorMessage message="No hay etiquetas registradas" />                        }
                         return(
                             <div className="my-4 mx-4 md:mx-10 overflow-hidden">
                                 <Table_1
-                                    types={resolvedCategories.data}
-                                    name='Categoria'
-                                    from={resolvedCategories.from}
-                                    url='/categories'
+                                    types={resolvedTags.data}
+                                    name='Etiqueta'
+                                    from={resolvedTags.from}
+                                    url='/tags'
                                 />
                                 <Pagination
-                                    currentPage={resolvedCategories.current_page}
-                                    lastPage={resolvedCategories.last_page}
-                                    from={resolvedCategories.from}
-                                    to={resolvedCategories.to}
-                                    total={resolvedCategories.total}
+                                    currentPage={resolvedTags.current_page}
+                                    lastPage={resolvedTags.last_page}
+                                    from={resolvedTags.from}
+                                    to={resolvedTags.to}
+                                    total={resolvedTags.total}
                                 />
                             </div>
                         )}}
