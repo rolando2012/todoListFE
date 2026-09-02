@@ -9,7 +9,7 @@ const Navbar = () => {
     };
 
     const navItems = [
-        { id: 1, text: "Tareas" , ruta: "/"},
+        { id: 1, text: "Tareas" , ruta: "/tasks"},
         { id: 2, text: "Categorias", ruta: "/categories" },
         { id: 3, text: "Etiquetas", ruta: "/tags" },
     ];
