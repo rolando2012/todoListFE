@@ -1,4 +1,4 @@
-import { Form, useActionData, useNavigation } from "react-router";
+import { Form, useNavigation } from "react-router";
 import Button from "../common/Button";
 import LinkButton from "../common/LinkButton";
 import { ToastError } from "../Toast/ToastError";
@@ -7,6 +7,7 @@ import StateSwitch from "./extra/StateSwitch";
 import { HiChevronDown } from "react-icons/hi";
 
 const TaskForm = ({
+    actionData,
     submitText,
     onCancelRoute = "/",
     placeholder = "Ingrese el nombre",
@@ -17,7 +18,6 @@ const TaskForm = ({
     categories = [],
     tags = [],
 }) => {
-    const actionData = useActionData();
     const navigation = useNavigation();
 
     const isSubmitting = navigation.state === "submitting";
@@ -25,19 +25,8 @@ const TaskForm = ({
     return (
         <>
             {actionData?.error && <ToastError error={actionData.error} />}
-            <Form
-                method={method}
-                className="space-y-6"
-                noValidate
-            >
-                {edit && (
-                    <input
-                        type="hidden"
-                        name="id"
-                        defaultValue={obj?.id}
-                    />
-                )}
-
+            <Form method={method} className="space-y-6" noValidate >
+                {edit && (<input type="hidden" name="id" defaultValue={obj?.id} />)}
                 <div>
                     <label
                         htmlFor="title"

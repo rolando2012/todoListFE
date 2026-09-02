@@ -12,7 +12,7 @@ export async function taskLoader({ request  }) {
 
 export async function tastFormLoader() {
     const [categories, tags] = await Promise.all([
-        getAllTags(), getAllCats()
+        getAllCats(), getAllTags()
     ])
 
     return {

@@ -15,6 +15,7 @@ import EditTag from "./pages/tags/EditTag";
 import ListTask from "./pages/tasks/ListTask";
 import { taskLoader, tastFormLoader } from "./loaders/task.loader";
 import CreateTask from "./pages/tasks/CreateTask";
+import { createTaskAction } from "./actions/task.action";
 
 export const router = createBrowserRouter([
     {
@@ -32,7 +33,8 @@ export const router = createBrowserRouter([
                     {
                         path: "create",
                         Component: CreateTask,
-                        loader: tastFormLoader
+                        loader: tastFormLoader,
+                        action: createTaskAction
                     }
                 ]
             },
