@@ -1,1 +1,41 @@
 @import "tailwindcss";
+@import "tom-select/dist/css/tom-select.css";
+
+.ts-wrapper .ts-control {
+    border-color: black !important; 
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.75rem;
+    font-size: 1rem;
+}
+
+.ts-wrapper.focus .ts-control {
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 1px #6366f1;
+}
+
+.ts-control input {
+    font-size: 1rem !important;
+}
+
+.ts-control > div {
+    font-size: 1rem;
+}
+
+.ts-dropdown {
+    font-size: 1rem;
+    border-color: #a5b4fc;
+    border-radius: 0.5rem;
+}
+
+.ts-dropdown .option {
+    font-size: 1rem;
+    padding: 0.75rem 0.75rem;
+}
+
+
+.ts-control .item {
+    font-size: 0.95rem;
+    background-color: #e0e7ff;
+    color: #3730a3; 
+    border-radius: 0.75rem;
+}

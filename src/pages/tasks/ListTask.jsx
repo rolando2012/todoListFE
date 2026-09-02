@@ -32,7 +32,6 @@ export default function ListTask() {
                     }
                 >
                     {(resolvedTasks) => {
-                      console.log(resolvedTasks);
                         if(!resolvedTasks?.data || resolvedTasks.data.length === 0){
                             return <ErrorMessage message="No hay tareas registradas" />                        }
                         return(
