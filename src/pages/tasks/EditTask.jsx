@@ -36,7 +36,8 @@ export default function EditTask(){
                                 placeholder="Ej. Preparar informe trimestral..."
                                 onCancelRoute="/tasks"
                                 icon={FaPencilAlt}
-                                method="post"
+                                method="put"
+                                edit={true}
                                 categories={categories.data}
                                 tags={tags.data}
                                 obj={task}

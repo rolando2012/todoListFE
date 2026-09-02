@@ -15,3 +15,9 @@ export async function create(formData) {
 export async function show(id) {
     return await apiRequest(`${URL_TASK}/${id}`, { method: 'GET'});
 }
+
+export async function edit(formData, id) {
+    return await apiRequest(`${URL_TASK}/${id}`, { method: 'PUT',
+                                body: JSON.stringify(formData)
+    });
+}

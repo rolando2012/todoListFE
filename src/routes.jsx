@@ -13,10 +13,11 @@ import { createTagAction, deleteTagAction, editTagAction } from "./actions/tag.a
 import ShowTag from "./pages/tags/ShowTag";
 import EditTag from "./pages/tags/EditTag";
 import ListTask from "./pages/tasks/ListTask";
-import { oneTaskLoader, taskLoader, tastFormLoader } from "./loaders/task.loader";
+import { oneTaskLoader, taskLoader, taskFormLoader } from "./loaders/task.loader";
 import CreateTask from "./pages/tasks/CreateTask";
-import { createTaskAction } from "./actions/task.action";
+import { createTaskAction, editTaskAction } from "./actions/task.action";
 import EditTask from "./pages/tasks/EditTask";
+import { skipRevalidationOnErrors } from "./utils/shouldRevalidate";
 
 export const router = createBrowserRouter([
     {
@@ -34,13 +35,16 @@ export const router = createBrowserRouter([
                     {
                         path: "create",
                         Component: CreateTask,
-                        loader: tastFormLoader,
-                        action: createTaskAction
+                        loader: taskFormLoader,
+                        action: createTaskAction,
+                        shouldRevalidate: skipRevalidationOnErrors
                     },
                     {
                         path: "edit/:id",
                         Component: EditTask,
-                        loader: oneTaskLoader
+                        loader: oneTaskLoader,
+                        action: editTaskAction,
+                        shouldRevalidate: skipRevalidationOnErrors
                     }
                 ]
             },

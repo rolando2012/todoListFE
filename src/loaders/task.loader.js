@@ -10,24 +10,16 @@ export async function taskLoader({ request  }) {
     }
 }
 
-export async function tastFormLoader() {
-    const [categories, tags] = await Promise.all([
-        getAllCats(), getAllTags()
-    ])
-
+export async function taskFormLoader() {
     return {
-        categoriesPromise: categories, 
-        tagsPromise: tags};
+        categoriesPromise: getAllCats(), 
+        tagsPromise: getAllTags()};
 }
 
 export async function oneTaskLoader({ params }){
     const id = params.id;
-    const [task, categories, tags] = await Promise.all([
-        show(id), getAllCats(), getAllTags()
-    ])
-
-    return{ taskPromise: task,
-        categoriesPromise: categories, 
-        tagsPromise: tags
+    return{ taskPromise: show(id),
+        categoriesPromise: getAllCats(), 
+        tagsPromise: getAllTags()
     }
 }
