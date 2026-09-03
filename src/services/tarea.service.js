@@ -21,3 +21,7 @@ export async function edit(formData, id) {
                                 body: JSON.stringify(formData)
     });
 }
+
+export async function deleteTask(id) {
+    return await apiRequest(`${URL_TASK}/${id}`, { method: 'DELETE'});
+}
