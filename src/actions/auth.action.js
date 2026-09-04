@@ -19,7 +19,6 @@ export async function loginAction({ request }) {
         localStorage.setItem("token", info.token);
         return redirect('/tasks');
     } catch (error) {
-        console.log(error);
         return { error: error.message || "Ocurrió un error inesperado al conectar con el servidor." };
     }
 } 
