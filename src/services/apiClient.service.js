@@ -1,21 +1,21 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
-const TOKEN = import.meta.env.VITE_AUTH_TOKEN;
 
-const DEFAULT_HEADERS = {
-    'Accept' : 'application/json',
-    'Content-Type' : 'application/json',
-    ...(TOKEN && {'Authorization': `Bearer ${TOKEN}` })
-};
+const getRequestHeaders = (customHeaders = {}) => {
+    const token = localStorage.getItem("token");
+    return {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+        ...customHeaders
+    };
+}
 
 export async function apiRequest(endpoint, options = {}){
     const url = `${API_URL}${endpoint}`;
 
     const config = {
         ...options,
-        headers: {
-            ...DEFAULT_HEADERS,
-            ...options.headers,
-        }
+        headers: getRequestHeaders(options.headers)
     };
 
     const response = await fetch(url, config);
