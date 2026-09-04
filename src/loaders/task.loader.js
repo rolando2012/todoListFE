@@ -23,3 +23,8 @@ export async function oneTaskLoader({ params }){
         tagsPromise: getAllTags()
     }
 }
+
+export async function showTaskLoader({ params }) {
+    const id = params.id;
+    return{ taskPromise: show(id)};
+}
