@@ -1,7 +1,7 @@
 import { redirect } from "react-router";
-import { create, edit } from "../services/tarea.service";
+import { create, edit, deleteTask } from "../services/tarea.service";
 import { taskSchema, upadateTask } from "../schemas/task.schema";
-import z from "zod";
+import z, { success } from "zod";
 
 export async function createTaskAction({ request }) {
     const formData = await request.formData();
@@ -36,6 +36,18 @@ export async function editTaskAction({ request }) {
         return redirect('/tasks?success=Categoria+editada+exitosamente.');
     } catch (error) {
         return { error: error.message || "Ocurrió un error inesperado al conectar con el servidor." };
+    }
+}
+
+export async function deleteTaskAction({ request}) {
+    const formData = await request.formData();
+    const id = formData.get("id");
+    try {
+        await deleteTask(id);  
+        return { success: true, message: "Tarea eliminada correctamente."};
+    } catch (error) {
+        return { success: false, message: "No se pudo eliminar la tarea.",};
+    
     }
 }
 

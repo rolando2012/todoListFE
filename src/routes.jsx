@@ -15,7 +15,7 @@ import EditTag from "./pages/tags/EditTag";
 import ListTask from "./pages/tasks/ListTask";
 import { oneTaskLoader, taskLoader, taskFormLoader, showTaskLoader } from "./loaders/task.loader";
 import CreateTask from "./pages/tasks/CreateTask";
-import { createTaskAction, editTaskAction } from "./actions/task.action";
+import { createTaskAction, deleteTaskAction, editTaskAction } from "./actions/task.action";
 import EditTask from "./pages/tasks/EditTask";
 import { skipRevalidationOnErrors } from "./utils/shouldRevalidate";
 import ShowTask from "./pages/tasks/ShowTask";
@@ -31,7 +31,8 @@ export const router = createBrowserRouter([
                     {
                         index: true,
                         Component: ListTask,
-                        loader: taskLoader
+                        loader: taskLoader,
+                        action: deleteTaskAction
                     },
                     {
                         path: "create",
