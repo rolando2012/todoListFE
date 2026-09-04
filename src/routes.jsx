@@ -19,12 +19,19 @@ import { createTaskAction, deleteTaskAction, editTaskAction } from "./actions/ta
 import EditTask from "./pages/tasks/EditTask";
 import { skipRevalidationOnErrors } from "./utils/shouldRevalidate";
 import ShowTask from "./pages/tasks/ShowTask";
+import Login from "./pages/auth/Login";
+import { loginAction } from "./actions/auth.action";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         Component: App,
         children: [
+            {
+                index: true,
+                Component: Login,
+                action: loginAction
+            },
             {
                 path: "tasks",
                 children:[
