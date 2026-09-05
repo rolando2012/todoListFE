@@ -23,7 +23,7 @@ export async function apiRequest(endpoint, options = {}){
     if(!response.ok){
         // throw new Error(`Error ${response.status}: ${response.json()}`);
         const errorBody = await response.json(); 
-        throw new Error(`Error: ${errorBody.message}`);
+        throw new Error(`Error: ${errorBody.message || errorBody.errors[0]}`);
     }
 
     return response.json();
