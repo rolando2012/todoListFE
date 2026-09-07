@@ -21,6 +21,7 @@ import { skipRevalidationOnErrors } from "./utils/shouldRevalidate";
 import ShowTask from "./pages/tasks/ShowTask";
 import Login from "./pages/auth/Login";
 import { loginAction } from "./actions/auth.action";
+import { requireAuth, requireGuest } from "./middleware/auth.middleware";
 
 export const router = createBrowserRouter([
     {
@@ -30,10 +31,12 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Login,
-                action: loginAction
+                action: loginAction,
+                middleware: [requireGuest]
             },
             {
                 path: "tasks",
+                middleware: [requireAuth],
                 children:[
                     {
                         index: true,
@@ -64,6 +67,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "categories",
+                middleware: [requireAuth],
                 children: [
                     {
                         index: true,
@@ -91,6 +95,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "tags",
+                middleware: [requireAuth],
                 children:[
                     {
                         index: true,
