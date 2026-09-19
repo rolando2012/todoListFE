@@ -46,7 +46,7 @@ export async function deleteTaskAction({ request}) {
         await deleteTask(id);  
         return { success: true, message: "Tarea eliminada correctamente."};
     } catch (error) {
-        return { success: false, message: "No se pudo eliminar la tarea.",};
+        return { success: false, message: error.message || "No se pudo eliminar la tarea.",};
     
     }
 }

@@ -5,3 +5,7 @@ export async function login(formData) {
                             body: JSON.stringify(formData)
     })
 }
+
+export async function logout() {
+    return await apiRequest('/logout', { method: 'POST'})
+}

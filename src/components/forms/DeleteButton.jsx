@@ -1,11 +1,17 @@
+import { useEffect } from "react";
 import { useFetcher } from "react-router";
 import { FaSpinner } from "react-icons/fa";
 import { LuTrash2 } from "react-icons/lu";
 
 const DeleteButton = ({ id, name }) => {
-
     const fetcher = useFetcher();
     const isDeleting = fetcher.state !== "idle";
+
+    useEffect(() => {
+        if (fetcher.data) {
+            alert(fetcher.data.message);
+        }
+    }, [fetcher.data]);
 
     const handleSubmit = (event) => {
 
@@ -52,9 +58,15 @@ const DeleteButton = ({ id, name }) => {
                 "
             >
                 {isDeleting ? (
-                    <FaSpinner className="animate-spin" size={18} strokeWidth={2} />
+                    <FaSpinner
+                        className="animate-spin"
+                        size={18}
+                    />
                 ) : (
-                    <LuTrash2 size={18} strokeWidth={2} />
+                    <LuTrash2
+                        size={18}
+                        strokeWidth={2}
+                    />
                 )}
             </button>
         </fetcher.Form>

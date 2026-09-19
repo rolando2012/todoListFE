@@ -48,6 +48,6 @@ export async function deleteCatAction({request}){
         await deleteCat(id);
         return { success: true, message: "Categoría eliminada correctamente.",};
     } catch (error) {
-        return { success: false, message: "No se pudo eliminar la categoría.",};
+        return { success: false, message: error.message || "No se pudo eliminar la categoría.",};
     }
 }

@@ -1,7 +1,7 @@
 import { LoginSchema } from "../schemas/auth.schema";
-import z from "zod";
-import { login } from "../services/auth.service";
-import { redirect } from "react-router";
+import z, { success } from "zod";
+import { login, logout } from "../services/auth.service";
+import { redirect, replace } from "react-router";
 
 export async function loginAction({ request }) {
     const formData = await request.formData();
@@ -22,3 +22,14 @@ export async function loginAction({ request }) {
         return { error: error.message || "Ocurrió un error inesperado al conectar con el servidor." };
     }
 } 
+
+export async function logoutAction() {
+    try {
+        const res = await logout();
+        localStorage.removeItem("token");
+        return replace("/");
+    } catch (error) {
+        return { success: false, message: error.message || 
+            "No se pudo cerrar sesión." };
+    }
+}

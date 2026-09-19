@@ -70,9 +70,9 @@ export default function TableTask({ types, name, from, url }) {
                             <td className="py-4 px-6 text-left">
                                 <div className="flex flex-wrap gap-1.5">
                                     {task.tags?.length > 0 ? (
-                                        task.tags.map((tag) => (
+                                        task.tags.map((tag, index) => (
                                             <span
-                                                key={tag.id}
+                                                key={tag.id || `tag-${index}`}
                                                 className="inline-flex items-center px-2.5 py-1 rounded-md bg-gray-100 text-gray-600 border border-gray-200 text-xs font-medium"
                                             >
                                                 {tag.name}
