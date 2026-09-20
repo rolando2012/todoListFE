@@ -1,46 +1,80 @@
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { NavLink } from "react-router";
+import { FiLogOut } from "react-icons/fi";
+import { NavLink, Form } from "react-router";
 
 const Navbar = () => {
+
     const [nav, setNav] = useState(false);
+
     const handleNav = () => {
         setNav(!nav);
     };
 
     const navItems = [
-        { id: 1, text: "Tareas" , ruta: "/tasks"},
-        { id: 2, text: "Categorias", ruta: "/categories" },
-        { id: 3, text: "Etiquetas", ruta: "/tags" },
+        {
+            id: 1,
+            text: "Tareas",
+            ruta: "/tasks"
+        },
+        {
+            id: 2,
+            text: "Categorias",
+            ruta: "/categories"
+        },
+        {
+            id: 3,
+            text: "Etiquetas",
+            ruta: "/tags"
+        }
     ];
 
-    const activeLinkStyle = ({isActive}) =>
-        `block p-3 rounded-xl duration-300 ${isActive
-            ? "bg-white text-black font-semibold"
-            : "hover:bg-indigo-500 text-white"
-        }`
-    
+    const activeLinkStyle = ({ isActive }) =>
+        `block p-3 rounded-xl duration-300 ${
+            isActive
+                ? "bg-white text-black font-semibold"
+                : "hover:bg-indigo-500 text-white"
+        }`;
 
     return (
         <div className="bg-indigo-600 flex justify-between items-center h-20 mx-auto px-4 text-white">
-            <h1 className="w-full text-3xl font-bold text-white">To-Do List</h1>
-
-            <ul className="hidden md:flex">
+            <h1 className="w-full text-3xl font-bold text-white">
+                To-Do List
+            </h1>
+            <ul className="hidden md:flex items-center">
                 {navItems.map((item) => (
-                    <li
-                        key={item.id} className="m-2"
-                    >
-                        <NavLink to={item.ruta} className={activeLinkStyle} end={item.ruta === "/"}>
+                    <li key={item.id} className="m-2">
+                        <NavLink
+                            to={item.ruta}
+                            className={activeLinkStyle}
+                        >
                             {item.text}
                         </NavLink>
                     </li>
                 ))}
+                <li className="m-2">
+                    <Form method="post" action="/logout">
+                        <button
+                            type="submit"
+                            className="flex items-center gap-2 px-3 py-1 rounded-xl text-white 
+                            hover:bg-red-500 duration-300 cursor-pointer"
+                        >
+                            <FiLogOut size={20} />
+                            Cerrar sesión
+                        </button>
+                    </Form>
+                </li>
+
             </ul>
-
-            <div onClick={handleNav} className="block md:hidden cursor-pointer">
-                {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+            <div
+                onClick={handleNav}
+                className="block md:hidden cursor-pointer"
+            >
+                {nav
+                    ? <AiOutlineClose size={20} />
+                    : <AiOutlineMenu size={20} />
+                }
             </div>
-
             <ul
                 className={
                     nav
@@ -48,18 +82,37 @@ const Navbar = () => {
                         : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 -left-full"
                 }
             >
-                <h1 className="w-full text-3xl font-bold text-white my-4">To-Do List</h1>
-
+                <h1 className="w-full text-3xl font-bold text-white my-4">
+                    To-Do List
+                </h1>
                 {navItems.map((item) => (
                     <li
-                        key={item.id} className="border-b border-indigo-500 my-2"
+                        key={item.id}
+                        className="border-b border-indigo-500 my-2"
                     >
-                        <NavLink to={item.ruta} className={activeLinkStyle} end={item.ruta === "/"} 
-                                    onClick={handleNav}>
+                        <NavLink
+                            to={item.ruta}
+                            className={activeLinkStyle}
+                            onClick={handleNav}
+                        >
                             {item.text}
                         </NavLink>
                     </li>
                 ))}
+                <li className="border-b border-indigo-500 my-2">
+                    <Form
+                        method="post"
+                        action="/logout"
+                    >
+                        <button
+                            type="submit"
+                            className="flex items-center gap-2 w-full p-3 rounded-xl text-white hover:bg-red-500 duration-300"
+                        >
+                            <FiLogOut size={20} />
+                            Cerrar sesión
+                        </button>
+                    </Form>
+                </li>
             </ul>
         </div>
     );

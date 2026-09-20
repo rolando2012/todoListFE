@@ -7,11 +7,8 @@ export const taskSchema = z.object({
         description: z.string().trim()
                 .min(1, {message: "La descripción es obligatorio."})
                 .max(1000, "La descripción no puede superar los 1000 caracteres"),
-        category_id: z.string().min(1, "Debes seleccionar una categoría")
-                .transform(Number).pipe(z.number().int().positive("La categoría seleccionada no es válida")),
-        tags: z.array(z.string()).min(1, "Debes seleccionar al menos una etiqueta")
-                .transform((tags) => tags.map(Number))
-                .pipe(z.array(z.number().int().positive("Una etiqueta seleccionada no es válida"))),
+        category_id: z.string().min(1, "Debes seleccionar una categoría"),
+        tags: z.array(z.string()).min(1, "Debes seleccionar al menos una etiqueta"),
         state: z.string().transform(Number).pipe(
                 z.number().int().refine((value) => value === 0 || value === 1,
                 "El estado no es válido")),

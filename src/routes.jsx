@@ -20,13 +20,12 @@ import EditTask from "./pages/tasks/EditTask";
 import { skipRevalidationOnErrors } from "./utils/shouldRevalidate";
 import ShowTask from "./pages/tasks/ShowTask";
 import Login from "./pages/auth/Login";
-import { loginAction } from "./actions/auth.action";
+import { loginAction, logoutAction } from "./actions/auth.action";
 import { requireAuth, requireGuest } from "./middleware/auth.middleware";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        Component: App,
         children: [
             {
                 index: true,
@@ -35,91 +34,102 @@ export const router = createBrowserRouter([
                 middleware: [requireGuest]
             },
             {
-                path: "tasks",
-                middleware: [requireAuth],
-                children:[
-                    {
-                        index: true,
-                        Component: ListTask,
-                        loader: taskLoader,
-                        action: deleteTaskAction
-                    },
-                    {
-                        path: "create",
-                        Component: CreateTask,
-                        loader: taskFormLoader,
-                        action: createTaskAction,
-                        shouldRevalidate: skipRevalidationOnErrors
-                    },
-                    {
-                        path: "edit/:id",
-                        Component: EditTask,
-                        loader: oneTaskLoader,
-                        action: editTaskAction,
-                        shouldRevalidate: skipRevalidationOnErrors
-                    },
-                    {
-                        path: "show/:id",
-                        Component: ShowTask,
-                        loader: showTaskLoader
-                    }
-                ]
-            },
-            {
-                path: "categories",
+                Component: App,
                 middleware: [requireAuth],
                 children: [
+
                     {
-                        index: true,
-                        Component: ListCategory,
-                        loader: categoryLoader,
-                        action: deleteCatAction
+                        path: "tasks",
+                        children: [
+                            {
+                                index: true,
+                                Component: ListTask,
+                                loader: taskLoader,
+                                action: deleteTaskAction
+                            },
+                            {
+                                path: "create",
+                                Component: CreateTask,
+                                loader: taskFormLoader,
+                                action: createTaskAction,
+                                shouldRevalidate: skipRevalidationOnErrors
+                            },
+                            {
+                                path: "edit/:id",
+                                Component: EditTask,
+                                loader: oneTaskLoader,
+                                action: editTaskAction,
+                                shouldRevalidate: skipRevalidationOnErrors
+                            },
+                            {
+                                path: "show/:id",
+                                Component: ShowTask,
+                                loader: showTaskLoader
+                            }
+                        ]
                     },
+
                     {
-                        path: "create",
-                        Component: CreateCategory,
-                        action: createCategoryAction
+                        path: "categories",
+                        children: [
+                            {
+                                index: true,
+                                Component: ListCategory,
+                                loader: categoryLoader,
+                                action: deleteCatAction
+                            },
+                            {
+                                path: "create",
+                                Component: CreateCategory,
+                                action: createCategoryAction
+                            },
+                            {
+                                path: "edit/:id",
+                                Component: EditCategory,
+                                loader: catEditLoader,
+                                action: editCategoryAction
+                            },
+                            {
+                                path: "show/:id",
+                                Component: ShowCategory,
+                                loader: catEditLoader
+                            }
+                        ]
                     },
+
                     {
-                        path: "edit/:id",
-                        Component: EditCategory,
-                        loader: catEditLoader,
-                        action: editCategoryAction
-                    },
-                    {
-                        path: "show/:id",
-                        Component: ShowCategory,
-                        loader: catEditLoader
+                        path: "tags",
+                        children: [
+                            {
+                                index: true,
+                                Component: ListTag,
+                                loader: tagLoader,
+                                action: deleteTagAction
+                            },
+                            {
+                                path: "create",
+                                Component: CreateTag,
+                                action: createTagAction
+                            },
+                            {
+                                path: "show/:id",
+                                Component: ShowTag,
+                                loader: oneTagLoader
+                            },
+                            {
+                                path: "edit/:id",
+                                Component: EditTag,
+                                loader: oneTagLoader,
+                                action: editTagAction
+                            }
+                        ]
                     }
                 ]
             },
             {
-                path: "tags",
-                middleware: [requireAuth],
-                children:[
-                    {
-                        index: true,
-                        Component: ListTag,
-                        loader: tagLoader,
-                        action: deleteTagAction
-                    },
-                    {
-                        path: "create",
-                        Component: CreateTag,
-                        action: createTagAction
-                    },
-                    {
-                        path: "show/:id",
-                        Component: ShowTag,
-                        loader: oneTagLoader
-                    },
-                    {
-                        path: "edit/:id",
-                        Component: EditTag,
-                        loader: oneTagLoader,
-                        action: editTagAction
-                    }
-                ]
+                path: "logout",
+                action: logoutAction
             }
-        ]},
-])
+        ]
+    }
+]);

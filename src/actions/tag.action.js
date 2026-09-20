@@ -49,6 +49,6 @@ export async function deleteTagAction({ request }) {
         await deleteTag(id);
         return { success: true, message: "Etiqueta eliminada correctamente."};
     } catch (error) {
-        return { success: false, message: "No se pudo eliminar la etiqueta.",};
+        return { success: false, message: error.message || "No se pudo eliminar la etiqueta.",};
     }
 }
